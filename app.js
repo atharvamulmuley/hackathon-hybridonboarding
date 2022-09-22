@@ -19,5 +19,5 @@ app.put('/register', function (req, res) {
     res.send(JSON.stringify(serverIps))
   })
 app.listen(3000,() => {
-    console.log("server is up and running on port ")
+    console.log("server is up and running on port 3000",)
 })
