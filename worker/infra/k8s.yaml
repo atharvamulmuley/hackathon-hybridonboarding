@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: worker-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      component: worker
+  template:
+    metadata:
+      labels:
+        component: worker
+    spec:
+      containers:
+        - name: worker
+          image: umeshbhat/worker
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: worker-cluster-ip-service
+spec:
+  type: ClusterIP
+  selector:
+    app.kubernetes.io/name: worker
+    component: worker
+  ports:
+    - port: 80
+      targetPort: 80
